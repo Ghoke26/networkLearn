@@ -1,0 +1,26 @@
+ospf :
+
+ospf itu adalah routing dinamis dimana dia menggunakan algoritma dijakstra
+untuk menentukan rute tercepat dimana dia menghitung cost 
+dan juga memiliki lsbd database setiap router jadi ketika 
+router ada kabel terputus maka database itu akan update
+
+
+=========================
+config
+=========================
+
+
+bisa lihat file ospf
+1.dasar_ospf
+
+R1(config)#router ospf 1
+R1(config-router)#network 10.10.1.0 0.0.0.3 area 0
+
+jadi ini ceritanya router ospf 1 adalah untuk menentukan proses id
+dan network tesebut adalah network dari jarigan yang pengen di kenalkan
+dan area 0 berarti router itu masih di area 0, bisa dikatakan di kantor yang sama 
+
+nah kasus ketika misalnya 
+di router itu ada pc maka hanya router yang terhubung ke pc itu aja yang mengenalkan 
+network nya tidak perlu dari router lain hanya router tersebut saja yang terkonek 
