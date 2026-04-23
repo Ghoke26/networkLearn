@@ -1,0 +1,57 @@
+===================================
+KONFIGURASI DASAR
+===================================
+
+gunannya adalah ketika alat ini mau dipakai minimal konfigurasi ini sudah terpasang
+untuk keamanan dan juga memudahkan kita nanti ketika melakukan konfigurasi selanjutnya
+seperti nama password dsb
+
+
+config minimal harus tau
+
+1. enable                   = untuk masuk Privileged EXEC Mode (hak istimewa) atau root lah supaya mudah tau
+2. configure terminal       = untuk masuk menu konfigurasi jadi di sini akan melakukan konfigurasi apapun atau global konfigurasi
+3. end                      = langsung kembali ke menu root atau Privileged EXEC Mode
+4. exit                     = ini hanya kembali ke menu sebelumnya
+5. ctrl+C                   = ini sama kembali ke menu sebelumnya
+6. no ip domain-lookup      = supaya ketika salah konfig atau typo dia tidak translate atau mencari kata kunci itu jadi langsung selesai saja
+
+
+
+=====================
+untuk router 
+=====================
+lihat file : cisco/config_dasar
+
+
+hostname [namanya]                    : buat penaman device router
+enable secret [password]              : buat password ketika masuk mode admin atau yang ada # didepannya kalau > berarti pada saat mau masuk router
+line console 0                        : Masuk ke pengaturan port fisik Console
+password [password]                   : Menetapkan password untuk jalur tersebut saat masuk router
+login                                 : mengaktifkan proses pengecekan password saat ada yang mencoba masuk
+
+line vty 0                            : buat set password saat remote control bisa di atur berapa range nya 0 berati satu kalau 0 2 berattti ada 3 sesi remot yang bisa secara bersamaan
+service password-encryption           : ini buat set enkripsi secara global jadi semua passsword di enkripsi tetapi berbeda dengan enable secret perbedaan pada enkrispsi enable secret lebih baik tetapi hanya bisa set di saat login admin
+
+
+contoh penulisan konfigurasinya
+----------------------------------
+
+enable
+configure terminal
+hostname R1
+enable secret rahasia123
+line console 0
+password adminconsole
+login
+exit
+line vty 0 4
+password adminremote
+login
+exit
+service password-encryption
+banner motd # PERINGATAN: HANYA ADMIN YANG BOLEH MASUK #
+exit
+copy running-config startup-config
+
+
